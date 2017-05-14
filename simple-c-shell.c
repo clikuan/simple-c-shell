@@ -490,7 +490,7 @@ int commandHandler(char * args[]){
 	else if (strcmp(args[0],"clear") == 0) system("clear");
 	// 'cd' command to change directory
 	else if (strcmp(args[0],"cd") == 0) changeDirectory(args);
-	// 'environ' command to list the environment variables
+	// 'environ' command to list the environment variables 
 	else if (strcmp(args[0],"environ") == 0){
 		if (args[j] != NULL){
 			// If we want file output
@@ -559,6 +559,7 @@ int commandHandler(char * args[]){
 		}
 		// We launch the program with our method, indicating if we
 		// want background execution or not
+		args_aux[j] = NULL;
 		launchProg(args_aux,background);
 		
 		/**
@@ -610,8 +611,10 @@ int main(int argc, char *argv[], char ** envp) {
 		memset ( line, '\0', MAXLINE );
 
 		// We wait for user input
-		fgets(line, MAXLINE, stdin);
-	
+		if(fgets(line, MAXLINE, stdin) == NULL){
+			printf("exit\n");
+			exit(0);
+		}
 		// If nothing is written, the loop is executed again
 		if((tokens[0] = strtok(line," \n\t")) == NULL) continue;
 		

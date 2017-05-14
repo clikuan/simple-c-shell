@@ -11,3 +11,6 @@ simple-c-shell: $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $<
+clean: 
+	rm $(OBJ)
+	rm simple-c-shell
